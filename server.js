@@ -41,16 +41,28 @@ function Setup() {
 };
 //  function to view all employees
 function viewEmployees() {
-
-};
+    db.query('SELECT employee.first_name, employee.last_name, role.title, department.name, role.salary, manager.first_name, manager.lastname AS "manager_lastname" FROM employee LEFT JOIN role ON employee.role_id = role_id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id;',
+    function (err, res) {
+        if(err) throw err;
+        console.table(res);
+        Setup();
+})};
 // function to view the roles
 function viewRoles() {
-
-};
+    db.query(' SELECT role.title, role.salary, department.name FROM role LEFT JOIN department ON role.department_id = department_id',
+    function (err, res) {
+        if(err) throw err;
+        console.table(res);
+        Setup();
+})};
 //  function to view the departments
 function viewDepartments() {
-
-};
+    db.query('SELECT * FROM department',
+    function (err, res) {
+        if(err) throw err;
+        console.table(res);
+        initalSetup();
+})};
 // function to add employees
 function addEmployees() {
 
