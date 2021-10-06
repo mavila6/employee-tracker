@@ -61,11 +61,43 @@ function viewDepartments() {
     function (err, res) {
         if(err) throw err;
         console.table(res);
-        initalSetup();
+        Setup();
 })};
 // function to add employees
 function addEmployees() {
-
+    db.query("select id, title from role", (err, role) => {
+        db.query("select id, last_name from employee", (err, manager) => {
+        // uses inquirer prompt to gather employee info
+            prompt([
+                {
+                    type:"input",
+                    name:"first_name",
+                    message: "What is the employee's first name?"
+                },
+                {
+                    type:"input",
+                    name:"last_name",
+                    message: "What is the employee's last name?"
+                },
+                {
+                    type:"input",
+                    name:"role_id",
+                    message: "What is the employee's role id at the company?"
+                },
+                {
+                    type:"input",
+                    name:"manager_id",
+                    message: "What is the employee's manager id?"
+                }
+            ]).then(answer => {
+                db.query('INSERT INTO employee SET', [answer],
+                function (err) {
+                    if(err) throw err;
+                    Setup();
+                })
+            })
+        })
+    })
 };
 // function to add a role
 function addRole() {
