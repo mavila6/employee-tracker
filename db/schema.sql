@@ -1,5 +1,5 @@
 -- creates and uses the database
-DROP DATABASE IF EXISTS Employe;
+DROP DATABASE IF EXISTS Employee;
 CREATE DATABASE Employee;
 USE Employee;
 -- department table

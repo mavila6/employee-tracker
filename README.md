@@ -1,9 +1,5 @@
 # Employee Tracker
 
-## Website
-
-https://budget-tracker-mavila6.herokuapp.com/
-
 ## Description
 
 An application for business owners to be able to view and manage the departments, roles, and employees in a company to organize and plan their business.
