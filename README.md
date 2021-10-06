@@ -1,7 +1,5 @@
 # Employee Tracker
 
-# Budget Tracker
-
 ## Website
 
 https://budget-tracker-mavila6.herokuapp.com/
