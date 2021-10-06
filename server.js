@@ -94,18 +94,54 @@ function addEmployees() {
                 function (err) {
                     if(err) throw err;
                     Setup();
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 };
 // function to add a role
 function addRole() {
-
+    db.query('select id, name from department', (err, department) => {
+        prompt([
+            {
+                type: 'input',
+                name: 'title',
+                message: 'What is the role are you assigning you employee?'
+            },
+            {   
+                type: 'input',
+                name: 'title',
+                message: 'What is the salary of the role you would like to add?'
+            },
+            {   
+                type: 'input',
+                name: 'title',
+                message: 'What is the department id for the current role"'
+            }
+        ]).then(answer => {
+            db.query('INSERT INTO role SET ?', [answer],
+            function(err) {
+                if (err) throw err;
+                Setup();
+            });
+        });
+    });
 };
 //  function to add a department
 function addDepartment() {
-
+    prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What department would you like to add?",
+        },
+    ]).then(answer => {
+        db.query("INSERT INTO department SET?", [answer], function (err) {
+            if (err) throw err;
+            // calls the setup function after running every function
+            Setup();
+        })
+    })
 };
 
 // calling the prompt function
